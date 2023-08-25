@@ -154,7 +154,7 @@ export function N2dusdChart() {
       <div className='card d-grid' style={{backgroundImage: "linear-gradient(to right top, #00183d, #0c266d, #3a309c, #712fc7, #b212eb);"  }}>
       <div className="row col-lg-3">
         <div className="d-grid px-4">
-        <img src='n2usd-logo.png' width='120' style={{opacity:'0.7'}}/>
+        <img src='/crypto.png' width='80' style={{opacity:'0.7'}}/>
         </div>
         <div className="d-grid px-2">
         <h4 style={{color: "#fff", fontFamily:'SF Pro Display', fontWeight:'400'}}>{liveprice}</h4>

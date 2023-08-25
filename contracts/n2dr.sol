@@ -20,6 +20,7 @@ contract N2DR is ERC20, ERC20Burnable, Ownable, AccessControl {
 
     uint256 private _totalSupply;
 
+    //control de acceso para que no todos puedan mintear
     bytes32 public constant MANAGER_ROLE = keccak256("MANAGER_ROLE");
 
     constructor () ERC20("N2D Rewards", "N2DR") {
@@ -29,7 +30,7 @@ contract N2DR is ERC20, ERC20Burnable, Ownable, AccessControl {
 
     function mint(uint256 amount) external {
         require(hasRole(MANAGER_ROLE, _msgSender()), "Not allowed");
-        _totalSupply = _totalSupply.add(amount);
+        _totalSupply = _totalSupply.add(amount);//cada vez que se ejecute la funcion aumenta el suministro total
         _balances[msg.sender] = _balances[msg.sender].add(amount);
         _mint(msg.sender, amount);
     }

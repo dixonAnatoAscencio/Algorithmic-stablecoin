@@ -10,14 +10,15 @@ import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
-import "./n2usd.sol";
+import "./n2usd.sol";//se importan los contratos 
 import "./n2dr.sol";
 
+//Contrato de governanza para quema de tokens del sumnistro estable
 contract N2DUSDGovern is Ownable, ReentrancyGuard, AccessControl { 
     using SafeMath for uint256;
-    using SafeERC20 for IERC20;
+    using SafeERC20 for IERC20;//habilitamos el erc20
 
-    struct SupChange {
+    struct SupChange {//SupplyChange
         string method;
         uint256 amount;
         uint256 timestamp;
@@ -25,14 +26,14 @@ contract N2DUSDGovern is Ownable, ReentrancyGuard, AccessControl {
     }
 
     struct ReserveList {
-        IERC20 colToken;
+        IERC20 colToken;//Collateral token
     }
 
     mapping (uint256 => ReserveList) public rsvList;
 
     N2USD private n2usd;
     N2DR private n2dr;
-    address private reserveContract;
+    address private reserveContract;//address contrato de reserva
     uint256 public n2dusdsupply;
     uint256 public n2drsupply;
     address public datafeed;
@@ -72,12 +73,12 @@ contract N2DUSDGovern is Ownable, ReentrancyGuard, AccessControl {
 
     function setN2drTokenPrice(uint256 marketcap) external nonReentrant {
         require(hasRole(GOVERN_ROLE, _msgSender()), "Not allowed");
-        n2drsupply = n2dr.totalSupply();
+        n2drsupply = n2dr.totalSupply();//almacenamos el suministro total aqui
         unstableColPrice = ((marketcap).mul(n2drsupply)).div(WEI_VALUE);
     }
 
 
-    function colateralReBalancing() internal returns (bool) {
+    function colateralReBalancing() internal returns (bool) {//como es una funcion interna no necesitamos el rol de gobernador para llamarla
         require(hasRole(GOVERN_ROLE, _msgSender()), "Not allowed");
         uint256 stableBalance = rsvList[0].colToken.balanceOf(reserveContract);
         uint256 unstableBalance = rsvList[1].colToken.balanceOf(reserveContract);
@@ -122,7 +123,7 @@ contract N2DUSDGovern is Ownable, ReentrancyGuard, AccessControl {
     }
 
     function withdraw(uint256 _amount) external nonReentrant {
-        require(hasRole(GOVERN_ROLE, _msgSender()), "Not allowed");
+        require(hasRole(GOVERN_ROLE, _msgSender()), "Not allowed");//retirar tokens desde el contrato de gobernanza a la wallet 
         n2usd.transfer(address(msg.sender), _amount);
         emit Withdraw(block.timestamp, _amount);
     }

@@ -7,7 +7,12 @@ import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
 
 pragma solidity ^0.8.17.0;
 
+//Fake token
+//ejemplo de garantia estable
 contract USDT is ERC20, ERC20Burnable, Ownable {
+  //Token mockup 
+  //Al ser mock introducir el monto de ej 100 mas 18 ceros para valor en gwei
+  //para mintear el spender debe aprobar para depositar a otros contratos 
 
   using SafeERC20 for ERC20;
 

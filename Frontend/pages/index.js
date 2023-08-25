@@ -25,7 +25,7 @@ export default function Reserves() {
         let n2dusdsup = output.n2dusdsupply
         const reservesInfo = [
             {
-              coinLogo: "n2usd-logo.png",
+              coinLogo: "crypto.png",
               colA: "USDT",
               colAsupply: colla,
               colB: "WETH",
@@ -91,7 +91,8 @@ export default function Reserves() {
               <img
                 className=""
                 src={col.coinLogo}
-                width="150"
+                width="60"
+                height="60"
                 style={{ opacity: "0.8" }}
               />
               <a

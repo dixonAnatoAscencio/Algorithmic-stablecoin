@@ -17,10 +17,10 @@ function MyApp({ Component, pageProps }) {
     <div className="container">
       <div className="d-flex justify-content-left">
         <a href="#" className="d-flex align-items-left mb-2 mb-lg-0 text-white text-decoration-none">
-          <img width="100" height="45" src="/logo.png" style={{opacity:'0.9'}}/>
+          <img width="50" height="45" src="/crypto.png" style={{opacity:'0.9'}}/>
         </a>
         <ul className="nav col-10 col-lg me-lg mb-2 justify-content-left mb-md-0 px-3" style={{fontSize:'16px', fontWeight:"500" ,fontFamily:'SF Pro Display'}}>
-          <li><a href="/" className="nav-link text-white hover-button" style={{textShadow:'0px 1px 9px #000', opacity:'0.8'}}>n2Stables Reserves</a></li>
+          <li><a href="/" className="nav-link text-white hover-button" style={{textShadow:'0px 1px 9px #000', opacity:'0.8'}}>Stables Reserves</a></li>
         </ul>
       </div>
     </div>
